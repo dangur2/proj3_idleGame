@@ -1,19 +1,22 @@
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 public class CreateUI extends JFrame{
-    
-    public CreateUI(){
+    private final int gameHeight = 1200;
+    private final int gameWidth = 800;
+
+    public CreateUI(Inventory inventory){
         GameScreen gs = new GameScreen();
         SkillMenu sm = new SkillMenu();
-        InventoryScreen is = new InventoryScreen();
+        InventoryScreen is = new InventoryScreen(inventory);
 
-        setSize(1200,800);
+        setSize(gameHeight,gameWidth);
         setDefaultCloseOperation(1);
         setResizable(false);
-        setLayout(null);
-        add(gs);
-        add(sm);
-        add(is);
+        setLayout(new BorderLayout());
+        add(gs, BorderLayout.CENTER);
+        add(sm, BorderLayout.WEST);
+        add(is, BorderLayout.SOUTH);
         setVisible(true);
     }
 }

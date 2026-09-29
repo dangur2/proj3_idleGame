@@ -1,10 +1,12 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JPanel;
 
 public class GameScreen extends JPanel{
+    private final int GameWidth = 850;
+    private final int GameHeight = 500;
     public GameScreen(){
-        setLocation(350, 0);
-        setSize(850, 500);
+        setPreferredSize(new Dimension(GameWidth, GameHeight));
         setBackground(Color.green);
     }
 }

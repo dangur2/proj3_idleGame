@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-        CreateUI ui = new CreateUI();
+        Inventory inventory = new Inventory(new ArrayList<>(32));
+        CreateUI ui = new CreateUI(inventory);
     }
 }
