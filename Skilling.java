@@ -12,18 +12,28 @@ import javax.swing.Timer;
 
 public class Skilling extends JPanel{
 
-    private String currentSkill;
     private final Activity currentActivity;
     private JProgressBar progressBar;
     private Timer progressTimer;
+    private final Inventory inventory;
+    private final InventoryScreen is;
+    private final JLabel resourceLabel = new JLabel();
+    private final Timer resourceLabelTimer = new Timer(2000, event -> resourceLabel.setText(""));
+    private final String currentSkill;
 
-    public Skilling(Activity currentActivity, String currentSkill){
+    public Skilling(Activity currentActivity, Inventory inventory, InventoryScreen is, String currentSkill){
         this.currentActivity = currentActivity;
+        this.inventory = inventory;
+        this.is = is;
         this.currentSkill = currentSkill;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(850, 500));
         createActivityLabel();
+        resourceLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        resourceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         createProgressbar();
+        add(resourceLabel);
+        resourceLabelTimer.setRepeats(false);
     }
 
     private void createProgressbar() {
@@ -43,7 +53,10 @@ public class Skilling extends JPanel{
             int value = progressBar.getValue() + 1;
             if(value >= 100){
                 progressBar.setValue(0);
-                //give player resource
+                inventory.addItem(new Item(currentActivity.getResource(), "/Sprites/"+currentActivity.getResource()+".png"));
+                System.out.println("You got a resource");
+                showHarvestedResource();
+                is.update();
             }
             else{
                 progressBar.setValue(value);
@@ -51,12 +64,19 @@ public class Skilling extends JPanel{
         });
         progressTimer.start();
     }
+    public void stopTimer(){
+        progressTimer.stop();
+    }
 
     private void createActivityLabel() {
-        JLabel activityLabel = new JLabel(currentActivity.getName(), SwingConstants.CENTER);
+        JLabel activityLabel = new JLabel(currentSkill+": "+currentActivity.getName(), SwingConstants.CENTER);
         activityLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
         activityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(activityLabel);
+    }
+    private void showHarvestedResource() {
+        resourceLabel.setText("You received: "+"1 "+currentActivity.getResource());
+        resourceLabelTimer.restart();
     }
 
 }

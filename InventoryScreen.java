@@ -1,8 +1,13 @@
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class InventoryScreen extends JPanel{
     
@@ -14,26 +19,26 @@ public class InventoryScreen extends JPanel{
     public InventoryScreen(Inventory inventory){
         this.inventory = inventory;
         setPreferredSize(new Dimension(InventoryWidth,InventoryHeight));
-        GridLayout layout = new GridLayout(4, 8);
-        layout.setHgap(5);
-        layout.setVgap(5);
-        setLayout(layout);
-        addButton();
+        setLayout(new BorderLayout());
+
+        JLabel inventoryLabel = new JLabel("Inventory", SwingConstants.CENTER);
+        inventoryLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        inventoryLabel.setBorder(BorderFactory.createEmptyBorder(5,0,5,0));
+        
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4,7,5,5));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        add(inventoryLabel, BorderLayout.NORTH);
+        add(buttonPanel, BorderLayout.CENTER);
+        addButton(buttonPanel);
     }
-    private void addButton() {
-        for (int i = 0; i < inventory.getInventory().size(); i++) {
-            InventoryButton button;
-            if(inventory.getInventorySlot(i).getItem().isEmpty()){
-                Item emptyItem = new Item("", "");
-                button = new InventoryButton(emptyItem, i+1);
-            }
-            else{
-                button = new InventoryButton(inventory.getInventorySlot(i), i + 1);
-            }
+    private void addButton(JPanel buttonPanel) {
+        for (int i = 0; i < 28; i++) {
+            InventoryButton button = new InventoryButton(new Item("", ""), i);
             ib.add(button);
             button.setFocusable(true);
             button.setFocusPainted(false);
-            add(button);
+            buttonPanel.add(button);
         }
         addClickInput();
     }
@@ -47,10 +52,15 @@ public class InventoryScreen extends JPanel{
     }
 
     private void itemMenu(InventoryButton x) {
-        if(inventory.getInventorySlot(x.getSlot()-1).getItem().isEmpty()){
-            System.out.println("That slot is empty");
-            return;
+        //add logic when clicked, maybe menu to remove or use item
+        System.out.println("That slot contains: "+x.getIcon());
+    }
+    public void update(){
+        for(int i = 0; i < inventory.getInventory().size(); i++){
+            ib.get(i).setIcon(inventory.getInventorySlot(i).getIcon());
+            ib.get(i).setText(Integer.toString(inventory.getInventorySlot(i).getQuantity()));
         }
-        System.out.println(inventory.getInventorySlot(x.getSlot()-1).getItem().isEmpty());
+        revalidate();
+        repaint();
     }
 }

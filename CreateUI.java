@@ -6,12 +6,12 @@ public class CreateUI extends JFrame{
     private final int gameWidth = 800;
 
     public CreateUI(Inventory inventory){
-        GameScreen gs = new GameScreen();
-        SkillMenu sm = new SkillMenu(gs);
         InventoryScreen is = new InventoryScreen(inventory);
-
+        GameScreen gs = new GameScreen(inventory, is);
+        SkillMenu sm = new SkillMenu(gs);
+        
         setSize(gameHeight,gameWidth);
-        setDefaultCloseOperation(1);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setLayout(new BorderLayout());
         add(gs, BorderLayout.CENTER);

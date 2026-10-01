@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class SkillMenu extends JPanel{
@@ -13,23 +14,25 @@ public class SkillMenu extends JPanel{
     public SkillMenu(GameScreen gs){
         this.gs = gs;
         setPreferredSize(new Dimension(skillMenuWidth, skillMenuHeight));
-        setLayout(new GridLayout(5, 1));
+        setLayout(new GridLayout(5, 1,5,5));
+        setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         addButtons();
     }
     private void addButtons(){
         MenuButton wcButton = new MenuButton("woodcutting");
         MenuButton mineButton = new MenuButton("mining");
         MenuButton fishButton = new MenuButton("fishing");
-        MenuButton xButton = new MenuButton("TBD");
+        MenuButton divButton = new MenuButton("divination");
 
         sb.add(wcButton);
         sb.add(mineButton);
         sb.add(fishButton);
+        sb.add(divButton);
 
         add(wcButton);
         add(mineButton);
         add(fishButton);
-        add(xButton);
+        add(divButton);
 
         addClickInput();
     }
