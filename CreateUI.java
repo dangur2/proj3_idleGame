@@ -14,6 +14,8 @@ public class CreateUI extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
+        setTitle("idle game");
         add(gs, BorderLayout.CENTER);
         add(sm, BorderLayout.WEST);
         add(is, BorderLayout.SOUTH);
