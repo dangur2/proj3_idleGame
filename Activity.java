@@ -1,16 +1,19 @@
 public class Activity {
     private final String name;
     private final int xp;
-    private final int tick;
+    private final int timeMs;
     private final String resource;
 
-    public Activity(String name, int xp, int tick, String resource){
+    public Activity(String name, int xp, int timeMs, String resource){
         this.name = name;
         this.xp = xp;
-        this.tick = tick;
+        this.timeMs = timeMs;
         this.resource = resource;
     }
 
+    public int getDurationMs(){
+        return timeMs * 100;
+    }
     public String getName() {
         return name;
     }
@@ -19,8 +22,8 @@ public class Activity {
         return xp;
     }
 
-    public int getTick() {
-        return tick;
+    public int getTimeMs() {
+        return timeMs;
     }
 
     public String getResource() {

@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class InventoryScreen extends JPanel{
+public class InventoryScreen extends JPanel implements InventoryListener{
     
     private final int InventoryHeight = 300;
     private final int InventoryWidth = 450;
@@ -55,7 +55,8 @@ public class InventoryScreen extends JPanel{
         //add logic when clicked, maybe menu to remove or use item
         System.out.println("That slot contains: "+x.getIcon());
     }
-    public void update(){
+    @Override
+    public void onInventoryChange() {
         for(int i = 0; i < inventory.getInventory().size(); i++){
             ib.get(i).setIcon(inventory.getInventorySlot(i).getIcon());
             ib.get(i).setText(Integer.toString(inventory.getInventorySlot(i).getQuantity()));

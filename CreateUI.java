@@ -7,8 +7,9 @@ public class CreateUI extends JFrame{
 
     public CreateUI(Inventory inventory){
         InventoryScreen is = new InventoryScreen(inventory);
-        GameScreen gs = new GameScreen(inventory, is);
+        GameScreen gs = new GameScreen(inventory);
         SkillMenu sm = new SkillMenu(gs);
+        inventory.addListener(is);
         
         setSize(gameHeight,gameWidth);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

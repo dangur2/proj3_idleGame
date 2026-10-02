@@ -15,13 +15,12 @@ public class activityMenu extends JPanel{
     private Activity currentActivity;
     private final skillActivity sa = new skillActivity();
     private final Inventory inventory;
-    private final InventoryScreen is;
-    private Skilling currentSkilling;
+    private SkillingView currentSkilling;
+    private SkillingViewHandler svh;
 
-    public activityMenu(String skill, Inventory inventory, InventoryScreen is){
+    public activityMenu(String skill, Inventory inventory){
         this.inventory = inventory;
         this.currentSkill = skill;
-        this.is = is;
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
         JPanel buttonPanel = new JPanel(new GridLayout(3,2,10,10));
@@ -48,18 +47,17 @@ public class activityMenu extends JPanel{
     }
     private void doActivity(MenuButton x) {
         currentActivity = sa.getskillActivity(currentSkill).get(ab.indexOf(x));
-        currentSkilling = new Skilling(currentActivity, inventory, is, currentSkill);
+        currentSkilling = new SkillingView(currentActivity.getName(), currentSkill);
+        svh = new SkillingViewHandler(currentActivity, inventory,currentSkilling);
         removeAll();
         add(currentSkilling);
         revalidate();
         repaint();
     }
-    public Skilling getCurrentSkilling(){
-        return currentSkilling;
-    }
-    public void stopCurrentActivity(){
-        if(currentSkilling != null){
-            currentSkilling.stopTimer();
+    public void stopLoop(){
+        if(currentActivity != null){
+            svh.stopLoop();
         }
+        
     }
 }
