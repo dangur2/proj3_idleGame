@@ -12,13 +12,13 @@ import javax.swing.Timer;
 
 public class SkillingView extends JPanel{
 
-    private final String currentActivity;
+    private final Activity currentActivity;
     private JProgressBar progressBar;
     private final JLabel resourceLabel = new JLabel();
     private final Timer resourceLabelTimer = new Timer(2000, event -> resourceLabel.setText(""));
-    private final String currentSkill;
+    private final Skill currentSkill;
 
-    public SkillingView(String currentActivity, String currentSkill){
+    public SkillingView(Activity currentActivity, Skill currentSkill){
         this.currentActivity = currentActivity;
         this.currentSkill = currentSkill;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -45,7 +45,7 @@ public class SkillingView extends JPanel{
         progressBar.setValue( (int) (progress*100));
     }
     private void createActivityLabel() {
-        JLabel activityLabel = new JLabel(currentSkill+": "+currentActivity, SwingConstants.CENTER);
+        JLabel activityLabel = new JLabel(currentSkill.getName()+": "+currentActivity.getName(), SwingConstants.CENTER);
         activityLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
         activityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(activityLabel);

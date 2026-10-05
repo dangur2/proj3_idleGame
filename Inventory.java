@@ -21,7 +21,6 @@ public class Inventory {
     }
 
     public void addItem(Item i) {
-
         for (Item x : inventory) {
             if (x.getItem().equals(i.getItem())) {
                 x.increaseQuantity();

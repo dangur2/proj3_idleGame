@@ -12,7 +12,7 @@ public class GameScreen extends JPanel{
         setLocation(0, 0);
         setPreferredSize(new Dimension(GameWidth, GameHeight));
     }
-    public void setGameScreen(String skill){
+    public void setGameScreen(Skill skill){
         if(currentMenu != null){
             currentMenu.stopLoop();
         }
