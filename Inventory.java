@@ -5,9 +5,13 @@ public class Inventory {
 
     private ArrayList<Item> inventory = new ArrayList<>();
     private final ArrayList<InventoryListener> listeners = new ArrayList<>();
+    private final Levels lvl = new Levels();
 
     public Inventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
+    }
+    public Levels getLevels(){
+        return lvl;
     }
 
     public void addListener(InventoryListener i) {

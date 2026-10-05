@@ -14,8 +14,8 @@ public class SkillingView extends JPanel{
 
     private final Activity currentActivity;
     private JProgressBar progressBar;
-    private final JLabel resourceLabel = new JLabel();
-    private final Timer resourceLabelTimer = new Timer(2000, event -> resourceLabel.setText(""));
+    private final JLabel ResourceXpLabel = new JLabel();
+    private final Timer LabelTimer = new Timer(2000, event -> ResourceXpLabel.setText(""));
     private final Skill currentSkill;
 
     public SkillingView(Activity currentActivity, Skill currentSkill){
@@ -23,11 +23,12 @@ public class SkillingView extends JPanel{
         this.currentSkill = currentSkill;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         createActivityLabel();
-        resourceLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
-        resourceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        ResourceXpLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        ResourceXpLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        ResourceXpLabel.setHorizontalAlignment(SwingConstants.CENTER);
         createProgressbar();
-        add(resourceLabel);
-        resourceLabelTimer.setRepeats(false);
+        add(ResourceXpLabel);
+        LabelTimer.setRepeats(false);
     }
 
     private void createProgressbar() {
@@ -50,9 +51,8 @@ public class SkillingView extends JPanel{
         activityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(activityLabel);
     }
-    public void showHarvestedResource(int amount, String resource) {
-        resourceLabel.setText("You received: "+amount+" "+resource);
-        resourceLabelTimer.restart();
+    public void showResourceAndXp(int amount, String resource, int xp) {
+        ResourceXpLabel.setText("<html>You received: "+amount+" "+resource+"<br>You received: "+xp+" xp</html>");
+        LabelTimer.restart();
     }
-
 }

@@ -5,7 +5,7 @@ public class GameScreen extends JPanel{
     private final int GameWidth = 850;
     private final int GameHeight = 500;
     private final Inventory inventory;
-    private activityMenu currentMenu;
+    private ActivityMenu currentMenu;
 
     public GameScreen(Inventory inventory){
         this.inventory = inventory;
@@ -16,7 +16,7 @@ public class GameScreen extends JPanel{
         if(currentMenu != null){
             currentMenu.stopLoop();
         }
-        currentMenu = new activityMenu(skill, inventory);
+        currentMenu = new ActivityMenu(skill, inventory);
         removeAll();
         add(currentMenu);
         revalidate();
