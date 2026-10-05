@@ -2,8 +2,6 @@
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -27,17 +25,9 @@ public class ActivityMenu extends JPanel{
         addButtons(buttonPanel);
     }
     private void addButtons(JPanel buttonPanel){
-        List<Activity> SkillActivities = currentSkill.getActivities();
-        for (int i = 0; i < SkillActivities.size(); i++) {
-            Activity currentActivity = SkillActivities.get(i);
-            MenuButton button = new MenuButton(currentActivity.getName());
-            button.addActionListener((ActionEvent e) -> {
-                doActivity(currentActivity);
-            });
-            buttonPanel.add(button);
-        }
+        ActivityMenuHandler amh = new ActivityMenuHandler(currentSkill, inventory, buttonPanel, this);
     }
-    private void doActivity(Activity currentActivity) {
+    public void doActivity(Activity currentActivity) {
         currentSkilling = new SkillingView(currentActivity, currentSkill);
         svh = new SkillingViewHandler(currentActivity, inventory,currentSkilling, currentSkill);
         removeAll();

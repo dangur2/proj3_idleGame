@@ -5,17 +5,17 @@ public enum Skill {
 
     WOODCUTTING(
             "Woodcutting",
-            new Activity("Tree", 5, 50, "log", 1),
-            new Activity("Oak tree", 25, 200, "oak log", 10)),
+            new Activity("Tree", 15, 50, "log", 1),
+            new Activity("Oak tree", 70, 200, "oak log", 5)),
     FISHING("Fishing",
-            new Activity("Net fishing", 5, 50, "shrimp", 1),
-            new Activity("Bait fishing", 25, 200, "trout", 10)),
+            new Activity("Net fishing", 15, 50, "shrimp", 1),
+            new Activity("Bait fishing", 70, 200, "trout", 5)),
     MINING("Mining",
-            new Activity("Copper vein", 5, 100, "copper ore", 1),
-            new Activity("Tin vein", 25, 200, "tin ore", 10)),
+            new Activity("Copper vein", 15, 100, "copper ore", 1),
+            new Activity("Tin vein", 70, 200, "tin ore", 5)),
     DIVINATION("Divination",
-            new Activity("Pale colony", 5, 50, "pale wisp", 1),
-            new Activity("Psyon colony", 25, 200, "psyon wisp", 10));
+            new Activity("Pale colony", 15, 50, "pale wisp", 1),
+            new Activity("Psyon colony", 70, 200, "psyon wisp", 5));
             
     private final String name;
     private final List<Activity> activities;

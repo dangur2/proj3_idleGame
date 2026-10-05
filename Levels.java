@@ -14,16 +14,22 @@ public class Levels {
             level.put(x, new SkillProgress(1, 0));
         }
     }
-    public void addXp(Skill currentSkill, int xp){
+    public int getLevel(Skill skill){
+        return level.get(skill).getLvl();
+    }
+    public int addXp(Skill currentSkill, int xp){
+        int levels = 0;
         SkillProgress currSkill = level.get(currentSkill);
         currSkill.increaseXp(xp);
-        System.out.println("Level:  "+currSkill.getLvl()+" Xp: "+ currSkill.getXp());
+        System.out.println("Level:  "+currSkill.getLvl()+" Xp: "+ currSkill.getXp()+" / "+getLevelXp(currSkill.getLvl()));
         while(currSkill.getXp() >= getLevelXp(currSkill.getLvl())){
-            currSkill.increaseLevel(1);
             currSkill.removeXp(getLevelXp(currSkill.getLvl()));
+            currSkill.increaseLevel(1);
+            levels ++;
         }
+        return levels;
     }
     private int getLevelXp(int level) {
-        return (level * 50);
+        return (level * 100);
     }
 }

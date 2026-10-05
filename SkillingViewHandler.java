@@ -4,6 +4,7 @@ public class SkillingViewHandler {
     private static final int TICK_MS = 16;
     private final Timer loop;
     private final Skilling skilling;
+    private int levels = 0;
     
     public SkillingViewHandler(Activity currentActivity, Inventory inventory, SkillingView view, Skill currentSkill){
         skilling = new Skilling(currentActivity.getDurationMs());
@@ -12,11 +13,16 @@ public class SkillingViewHandler {
             view.fillBar(skilling.getProgress());
             for (int i = 0; i < rounds; i++) {
                 inventory.addItem(new Item(currentActivity.getResource(), "/Sprites/"+currentActivity.getResource()+".png"));
-                inventory.getLevels().addXp(currentSkill, currentActivity.getXp());
+                levels = inventory.getLevels().addXp(currentSkill, currentActivity.getXp());
+            }
+            if(levels > 0){
+                view.showLevelUp(currentSkill,levels);
+                levels--;
             }
             if(rounds > 0){
                 view.showResourceAndXp(rounds,currentActivity.getResource(), currentActivity.getXp());
             }
+            
         });
         loop.start();
     }
