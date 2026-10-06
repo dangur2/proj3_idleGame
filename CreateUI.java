@@ -9,7 +9,11 @@ public class CreateUI extends JFrame{
         InventoryScreen is = new InventoryScreen(inventory);
         GameScreen gs = new GameScreen(inventory);
         SkillMenu sm = new SkillMenu(gs);
+        StatsScreen ss = new StatsScreen(inventory.getLevels());
+        InventoryStatsPane isp = new InventoryStatsPane(is, ss);
         inventory.addListener(is);
+        inventory.getLevels().addListener(ss);
+
         
         setSize(gameHeight,gameWidth);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -19,7 +23,7 @@ public class CreateUI extends JFrame{
         setTitle("idle game");
         add(gs, BorderLayout.CENTER);
         add(sm, BorderLayout.WEST);
-        add(is, BorderLayout.SOUTH);
+        add(isp, BorderLayout.SOUTH);
         setVisible(true);
     }
 }

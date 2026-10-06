@@ -1,6 +1,6 @@
 public class SkillProgress {
-    private int level = 1;
-    private int xp = 0;
+    private int level;
+    private int xp;
     public SkillProgress(int level, int xp){
         this.level = level;
         this.xp = xp;

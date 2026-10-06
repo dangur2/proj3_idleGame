@@ -1,13 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class InventoryScreen extends JPanel implements InventoryListener{
     
@@ -20,15 +17,10 @@ public class InventoryScreen extends JPanel implements InventoryListener{
         this.inventory = inventory;
         setPreferredSize(new Dimension(InventoryWidth,InventoryHeight));
         setLayout(new BorderLayout());
-
-        JLabel inventoryLabel = new JLabel("Inventory", SwingConstants.CENTER);
-        inventoryLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
-        inventoryLabel.setBorder(BorderFactory.createEmptyBorder(5,0,5,0));
         
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4,7,5,5));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-        add(inventoryLabel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
         addButton(buttonPanel);
     }
@@ -38,16 +30,10 @@ public class InventoryScreen extends JPanel implements InventoryListener{
             ib.add(button);
             button.setFocusable(true);
             button.setFocusPainted(false);
-            buttonPanel.add(button);
-        }
-        addClickInput();
-    }
-
-    private void addClickInput() {
-        for (InventoryButton x : ib) {
-            x.addActionListener((ActionEvent e) -> {
-                itemMenu(x);
+            button.addActionListener((ActionEvent e) -> {
+                itemMenu(button);
             });
+            buttonPanel.add(button);
         }
     }
 
