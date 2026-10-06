@@ -9,6 +9,10 @@ due to me not liking the implementing part of that, the gameplayloop is very sho
 If I were to continue development it could include usage of items, more skills, more activities, combat, save and load, offline progression.
 
 ![Example Image1](example_1.png)
+
 ![Example Image2](example_2.png)
+
 ![Example Image3](example_3.png)
+
 ![Example Image4](example_4.png)
+
