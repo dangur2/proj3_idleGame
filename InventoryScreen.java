@@ -39,7 +39,6 @@ public class InventoryScreen extends JPanel implements InventoryListener{
 
     private void itemMenu(InventoryButton x) {
         //add logic when clicked, maybe menu to remove or use item
-        System.out.println("That slot contains: "+x.getIcon());
     }
     @Override
     public void onInventoryChange() {
